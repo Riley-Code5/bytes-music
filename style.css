@@ -1,0 +1,271 @@
+body {
+  margin: 0;
+  padding: 20px;
+  background: #1a1a1a;
+  min-height: 100vh;
+}
+
+.album-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); /* 200px + 32px padding */
+  gap: 20px;
+  max-width: 1200px; /* Optional: limit maximum width */
+  margin: 0 auto; /* Center the grid */
+}
+
+.album-card {
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  width: 200px;
+  justify-self: center; /* Center cards in their grid cells */
+  background: linear-gradient(135deg, rgba(87, 87, 112, 0.8), rgba(32, 32, 32, 0.6));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.album-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+.albumCover {
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.album-card h1 {
+  font-family: sans-serif;
+  text-align: center;
+  color: white;
+  margin: 8px 0 4px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  line-height: 1.2;
+}
+
+.album-card p {
+  font-family: sans-serif;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-size: 1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  line-height: 1.3;
+}
+.play {
+  border-radius: 20%; /* Start with a slightly rounded square */
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 10;
+  /* Only include properties that change or are initial */
+  transition: border-radius 0.3s ease, box-shadow 0.3s ease; /* Transition border-radius */
+  background-color: rgba(83, 221, 255, 0.7); /* Example: add a background */
+  color: white; /* Example: text color */
+  border: none; /* Example: remove default border */
+  display: flex; /* Example: for centering content within the button */
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.play:hover {
+  border-radius: 50%; /* Change to a perfect circle on hover */
+  /* No need to repeat height, width, position, bottom, right, z-index if they don't change */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Example: add a subtle shadow on hover */
+}
+.play:active {
+  /* No need to repeat height, width, position, bottom, right, z-index if they don't change */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* Example: add a subtle shadow on hover */
+}
+.info {
+  border-radius: 20%; /* Start with a slightly rounded square */
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  z-index: 10;
+  /* Only include properties that change or are initial */
+  transition: border-radius 0.3s ease, box-shadow 0.3s ease; /* Transition border-radius */
+  background-color: #ff9bf3b3; /* Example: add a background */
+  color: white; /* Example: text color */
+  border: none; /* Example: remove default border */
+  display: flex; /* Example: for centering content within the button */
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.info:hover {
+  border-radius: 50%; /* Change to a perfect circle on hover */
+  /* No need to repeat height, width, position, bottom, right, z-index if they don't change */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Example: add a subtle shadow on hover */
+}
+.info:active {
+  /* No need to repeat height, width, position, bottom, right, z-index if they don't change */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* Example: add a subtle shadow on hover */
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .album-container {
+    gap: 15px;
+  }
+  
+  .album-card {
+    width: 180px;
+    padding: 12px;
+  }
+  
+  .albumCover {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .album-card h1 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .album-container {
+    grid-template-columns: 1fr; /* Single column on very small screens */
+  }
+  
+  .album-card {
+    width: 160px;
+  }
+  
+  .albumCover {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+
+/* Lyrics Modal Overlay */
+.lyrics-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  display: flex; /* Use flexbox to center content */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top of everything */
+
+  /* Hidden by default, with transition for smooth appearance */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show modal state */
+.lyrics-modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Content Box */
+.lyrics-modal-content {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  width: 90%; /* Responsive width */
+  max-width: 600px; /* Max width for larger screens */
+  max-height: 80%; /* Max height to allow scrolling */
+  overflow: hidden; /* Hide overflow for internal scrolling */
+  position: relative; /* For positioning the close button */
+  display: flex;
+  flex-direction: column;
+
+  /* Initial state for animation */
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+/* Animation for modal content when shown */
+.lyrics-modal-overlay.show .lyrics-modal-content {
+  transform: translateY(0);
+}
+
+/* Close Button */
+.lyrics-modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lyrics-modal-close-button:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Modal Title and Artist */
+.lyrics-modal-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.lyrics-modal-artist {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Lyrics Body */
+.lyrics-modal-body {
+  flex-grow: 1; /* Allows it to take available space */
+  overflow-y: auto; /* Enable scrolling for long lyrics */
+  padding-right: 10px; /* Space for scrollbar */
+  line-height: 1.6;
+  color: #444;
+  white-space: pre-wrap; /* Preserves newlines and spaces */
+  font-size: 0.95rem;
+}
+
+/* Custom scrollbar for better aesthetics (optional, but good for custom styles) */
+.lyrics-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lyrics-modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.lyrics-modal-body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.lyrics-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
