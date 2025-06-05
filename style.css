@@ -50,7 +50,7 @@ body {
   line-height: 1.2;
 }
 
-.album-card p {
+.artist {
   font-family: sans-serif;
   text-align: center;
   color: rgba(255, 255, 255, 0.9);
@@ -76,6 +76,22 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.explicit {
+  position: absolute;
+  font-family: sans-serif;
+  text-align: center;
+  bottom: 30px;
+  right: 16px;
+  background-color: rgb(155, 155, 155); /* Example: red background for explicit */
+  color: white; /* Example: text color */
+  padding: 2px 5px;
+  width: 12.5px;
+  height: 20px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  line-height: 1.7;
 }
 
 .play:hover {

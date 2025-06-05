@@ -108,7 +108,7 @@ function initializeAlbumCards() {
     card.innerHTML = `
       <img src="./assets/image_is_loading.png" class="albumCover" id="${uniqueId}" crossorigin="anonymous">
       <h1>${album}</h1>
-      <p>${artist}</p>
+      <p class="artist">${artist}<p class="explicit" style="display: none;">E</p></p>
       <button class="info">…</button> <!-- Removed onclick attribute -->
       <button class="play">▶</button>
     `;
